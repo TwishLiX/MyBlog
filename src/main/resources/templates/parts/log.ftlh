@@ -1,3 +1,5 @@
+<#include "security.ftlh">
+
 <#macro login path isRegisterForm>
     <form action="${path}" method="post">
         <div class="mb-3">
@@ -61,18 +63,10 @@
 </#macro>
 
 <#macro logout>
-    <#assign
-        known = Session.SPRING_SECURITY_CONTEXT??
-    >
-    <#if known>
-        <#assign
-            user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
-        >
-        <#if user.isActive()>
-            <form action="/logout" method="post">
-                <div><input type="hidden" name="_csrf" value="${_csrf.token}"/></div>
-                <div><button class="btn btn-primary" type="submit">Sign out</button></div>
-            </form>
-        </#if>
+    <#if isActive>
+        <form action="/logout" method="post">
+            <div><input type="hidden" name="_csrf" value="${_csrf.token}"/></div>
+            <div><button class="btn btn-primary" type="submit">Sign out</button></div>
+        </form>
     </#if>
 </#macro>
