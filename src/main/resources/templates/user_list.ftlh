@@ -1,13 +1,13 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div>List of users</div>
-    <table>
+    <div><h5><strong>List of users</strong></h5></div>
+    <table class="table table-striped table-bordered" style="width: 350px;">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th></th>
+            <th scope="col" style="width: 160px;">Name</th>
+            <th scope="col" style="width: 120px;">Role</th>
+            <th scope="col" style="width: 70px;">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
             <tr>
                 <td>${user.username}</td>
                 <td><#list user.roles as role>${role}<#sep>, </#list></td>
-                <td><a href="/user/${user.id}">Edit</a></td>
+                <td><a href="/user/${user.id}" role="button" class="btn btn-primary">Edit</a></td>
             </tr>
         </#list>
         </tbody>
